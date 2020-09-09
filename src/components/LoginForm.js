@@ -1,10 +1,11 @@
-import React from "react";
-import auth from "../auth";
+import React from 'react';
+import PropTypes from 'prop-types';
+import auth from '../auth';
 
-const LoginForm = props => {
+const LoginForm = (props) => {
   function login() {
     auth.login(() => {
-      props.history.push("/");
+      props.history.push('/');
     });
   }
   return (
@@ -12,7 +13,7 @@ const LoginForm = props => {
       <div className="d-flex row justify-content-center align-items-center">
 
         <form className="col col-sm-4 m-4 p-4 border" onSubmit={login}>
-          <h5>Login</h5>
+          <h5 className="text-center">Login</h5>
           <div className="form-group">
             <label htmlFor="uname"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="uname" required className="form-control" />
@@ -28,5 +29,7 @@ const LoginForm = props => {
     </div>
   );
 };
-
+LoginForm.propTypes = {
+  history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
+};
 export default LoginForm;

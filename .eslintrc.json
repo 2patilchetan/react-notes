@@ -1,0 +1,38 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "extends": [
+        "react-app",
+        "airbnb",
+        "plugin:react/recommended"
+    ],
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "no-console": "error",
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "jsx-a11y/label-has-associated-control": [ "error", {
+            "required": {
+              "some": [ "nesting", "id"  ]
+            }
+          }],
+          "jsx-a11y/label-has-for": [ "error", {
+            "required": {
+              "some": [ "nesting", "id"  ]
+            }
+          }]
+    },
+    
+    "parserOptions": {
+        "ecmaVersion": 9,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+          }
+    }
+
+    
+}

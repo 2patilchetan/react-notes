@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addNote, editNote } from '../redux/actions';
 
@@ -8,32 +9,34 @@ class NoteForm extends Component {
     this.state = {
       title: '',
       content: '',
-      id: null
     };
   }
+
+  componentDidUpdate(prevProp) {
+    const { notes, selectedNote } = this.props;
+    if (prevProp.selectedNote !== selectedNote && selectedNote > -1) {
+      this.setState({ ...notes[selectedNote] });
+    }
+  }
+
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
 
   handleSubmission = (e) => {
     e.preventDefault();
-
-    let { title, content } = this.state;
-    const id = this.props.selectedNote
-    if ((id || id === 0 ) && id > -1) {
+    const { title, content } = this.state;
+    const { selectedNote: id } = this.props;
+    if ((id || id === 0) && id > -1) {
       this.props.editNote(id, title, content);
     } else {
       this.props.addNote(title, content);
     }
     this.setState({ title: '', content: '' });
   }
-  componentDidUpdate(prevProp) {
-    const { notes, selectedNote } = this.props;
-    if (prevProp.selectedNote !== selectedNote && selectedNote > -1) {
-      this.setState({ ...notes[selectedNote], id: selectedNote });
-    }
-  }
+
   render() {
+    const { selectedNote } = this.props;
     return (
       <form onSubmit={this.handleSubmission} className="sticky-top">
         <div className="form-group">
@@ -45,16 +48,23 @@ class NoteForm extends Component {
           <textarea placeholder="Enter Note content" name="content" required value={this.state.content} onChange={this.handleChange} className="form-control" rows="10" />
         </div>
         <button type="submit" className="btn btn-primary float-right">
-          {this.props.selectedNote > -1 ? 'Update' : 'Add'} Note
-            </button>
+          { selectedNote > -1 ? 'Update' : 'Add'}
+          Note
+        </button>
 
       </form>
     );
   }
+}
+NoteForm.propTypes = {
+  notes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  selectedNote: PropTypes.number.isRequired,
+  editNote: PropTypes.func.isRequired,
+  addNote: PropTypes.func.isRequired,
 };
-const mapStateToProps = state => {
-  return {
-    ...state
-  };
-};
+
+const mapStateToProps = (state) => ({
+  ...state,
+});
+
 export default connect(mapStateToProps, { addNote, editNote })(NoteForm);
