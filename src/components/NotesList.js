@@ -11,16 +11,16 @@ const NotesList = props => {
     props.removeNote(id);
   }
   return (
-    <ul>
+    <ul className="pl-0">
       {notes.map((item, index) => (
-        <li className="note" key={index} onClick={() => selectNote({ ...item, id: index })}>
+        <li className="note py-3 pl-3" key={index} onClick={() => selectNote({ ...item, id: index })}>
           <button type="button" className="close" aria-label="Close" onClick={(e) => {
             e.stopPropagation();
             removeNote(index)
             }}>
             <span aria-hidden="true">&times;</span>
           </button>
-          <h4>{item.title}</h4>
+          <h6>{item.title}</h6>
           <p>{item.content}</p>
         </li>
       ))}

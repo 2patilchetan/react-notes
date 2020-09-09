@@ -6,7 +6,6 @@ const initialState = {
 };
 
 function rootReducer(state = initialState, action) {
-  console.log(state, action)
   switch (action.type) {
     case SELECT_NOTE:
       return { ...state, selectedNote: action.id };
