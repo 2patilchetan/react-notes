@@ -11,7 +11,8 @@ const LoginForm = props => {
     <div className="container-fluid">
       <div className="d-flex row justify-content-center align-items-center">
 
-        <form className="col col-sm-4" onSubmit={login}>
+        <form className="col col-sm-4 m-4 p-4 border" onSubmit={login}>
+          <h5>Login</h5>
           <div className="form-group">
             <label htmlFor="uname"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="uname" required className="form-control" />
