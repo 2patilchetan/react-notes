@@ -12,11 +12,11 @@ import { ProtectedRoute } from "./protected.route";
 
 ReactDOM.render(
   <Provider store={store}>
-    <Header/>
-  <Router>    
-    <ProtectedRoute exact path="/" component={Dashboard} />
-    <Route path="/login" component={LoginForm} />
-  </Router>
+    <Header />
+    <Router>
+      <ProtectedRoute exact path="/" component={Dashboard} />
+      <Route path="/login" component={LoginForm} />
+    </Router>
   </Provider>,
   document.getElementById("root")
 );

@@ -1,17 +1,17 @@
 import { ADD_NOTE, EDIT_NOTE, REMOVE_NOTE, SELECT_NOTE } from './actions';
 
 const initialState = {
-  notes: [ ],
-  selectedNote : -1
+  notes: [],
+  selectedNote: -1
 };
 
 function rootReducer(state = initialState, action) {
-  console.log(action)
-  switch(action.type) {
+  switch (action.type) {
     case SELECT_NOTE:
-      return {...state,selectedNote: action.id};
+      return { ...state, selectedNote: action.id };
     case ADD_NOTE:
-      return {...state,
+      return {
+        ...state,
         notes: [
           ...state.notes,
           {
@@ -21,7 +21,7 @@ function rootReducer(state = initialState, action) {
         ]
       };
     case EDIT_NOTE:
-      let notes = [ ...state.notes ]
+      let notes = [...state.notes]
       notes[action.id] = {
         title: action.title,
         content: action.content
@@ -29,10 +29,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         notes: notes,
-        selectedNote:-1
+        selectedNote: -1
       };
     case REMOVE_NOTE:
-      return {...state,
+      return {
+        ...state,
         notes: state.notes.filter((note, index) => index !== action.id)
       };
 

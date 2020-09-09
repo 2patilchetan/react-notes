@@ -6,9 +6,9 @@ class NoteForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title:'',
-      content:'',
-      id:null
+      title: '',
+      content: '',
+      id: null
     };
   }
   handleChange = (e) => {
@@ -19,35 +19,34 @@ class NoteForm extends Component {
     e.preventDefault();
 
     let { title, content, id } = this.state;
-    if(id && id > -1 ){
+    if (id && id > -1) {
       this.props.editNote(id, title, content);
-    }else{
-      this.props.addNote(title, content);      
+    } else {
+      this.props.addNote(title, content);
     }
     this.setState({ title: '', content: '' });
   }
-  componentDidUpdate (prevProp){
+  componentDidUpdate(prevProp) {
     const { notes, selectedNote } = this.props;
-    if(prevProp.selectedNote !== selectedNote && selectedNote > -1){
-      this.setState({ ...notes[selectedNote], id:selectedNote });
+    if (prevProp.selectedNote !== selectedNote && selectedNote > -1) {
+      this.setState({ ...notes[selectedNote], id: selectedNote });
     }
   }
-  render(){
-    console.log(this.props.selectedNote)  
+  render() {
     return (
-      <form onSubmit={ this.handleSubmission }>
+      <form onSubmit={this.handleSubmission}>
         <div className="form-group">
           <label htmlFor="title"><b>Title</b></label>
-          <input type="text" placeholder="Enter Note Title" name="title" required  value={ this.state.title } onChange={ this.handleChange } className="form-control"/>
+          <input type="text" placeholder="Enter Note Title" name="title" required value={this.state.title} onChange={this.handleChange} className="form-control" />
         </div>
         <div className="form-group">
-            <label htmlFor="content"><b>Body</b></label>
-            <textarea placeholder="Enter Note content" name="content" required  value={ this.state.content } onChange={ this.handleChange } className="form-control" rows="10"/>
-            </div>
-            <button type="submit" className="btn btn-primary float-right">
-              {  this.props.selectedNote > -1  ? 'Update' : 'Add' } Note
+          <label htmlFor="content"><b>Body</b></label>
+          <textarea placeholder="Enter Note content" name="content" required value={this.state.content} onChange={this.handleChange} className="form-control" rows="10" />
+        </div>
+        <button type="submit" className="btn btn-primary float-right">
+          {this.props.selectedNote > -1 ? 'Update' : 'Add'} Note
             </button>
-       
+
       </form>
     );
   }
@@ -57,4 +56,4 @@ const mapStateToProps = state => {
     ...state
   };
 };
-export default connect(mapStateToProps,{ addNote, editNote })(NoteForm);
+export default connect(mapStateToProps, { addNote, editNote })(NoteForm);
