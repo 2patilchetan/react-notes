@@ -6,6 +6,7 @@ const initialState = {
 };
 
 function rootReducer(state = initialState, action) {
+  console.log(state, action)
   switch (action.type) {
     case SELECT_NOTE:
       return { ...state, selectedNote: action.id };
@@ -34,7 +35,8 @@ function rootReducer(state = initialState, action) {
     case REMOVE_NOTE:
       return {
         ...state,
-        notes: state.notes.filter((note, index) => index !== action.id)
+        notes: state.notes.filter((note, index) => index !== action.id),
+        selectedNote: (state.selectedNote - 1)
       };
 
     default:

@@ -14,7 +14,10 @@ const NotesList = props => {
     <ul>
       {notes.map((item, index) => (
         <li className="note" key={index} onClick={() => selectNote({ ...item, id: index })}>
-          <button type="button" className="close" aria-label="Close" onClick={() => removeNote(index)}>
+          <button type="button" className="close" aria-label="Close" onClick={(e) => {
+            e.stopPropagation();
+            removeNote(index)
+            }}>
             <span aria-hidden="true">&times;</span>
           </button>
           <h4>{item.title}</h4>

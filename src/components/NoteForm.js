@@ -18,8 +18,9 @@ class NoteForm extends Component {
   handleSubmission = (e) => {
     e.preventDefault();
 
-    let { title, content, id } = this.state;
-    if (id && id > -1) {
+    let { title, content } = this.state;
+    const id = this.props.selectedNote
+    if ((id || id === 0 ) && id > -1) {
       this.props.editNote(id, title, content);
     } else {
       this.props.addNote(title, content);
