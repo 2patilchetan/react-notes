@@ -35,7 +35,7 @@ class NoteForm extends Component {
   }
   render() {
     return (
-      <form onSubmit={this.handleSubmission}>
+      <form onSubmit={this.handleSubmission} className="sticky-top">
         <div className="form-group">
           <label htmlFor="title"><b>Title</b></label>
           <input type="text" placeholder="Enter Note Title" name="title" required value={this.state.title} onChange={this.handleChange} className="form-control" />

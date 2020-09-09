@@ -7,7 +7,7 @@ class Dashboard extends Component {
     return (
       <div className="container-fluid">
         <div className="row">
-          <div className="col-sm-4 border-right nodesList pl-0"><NotesList /></div>
+          <div className="col-sm-4 border-right nodesList px-0"><NotesList /></div>
           <div className="col-sm-8 p-4"><NoteForm /></div>
         </div>
       </div>
