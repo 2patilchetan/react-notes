@@ -74,7 +74,8 @@ NoteForm.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  ...state,
+  notes: state.notes,
+  selectedNote: state.selectedNote,
 });
 
 export default connect(mapStateToProps, { addNote, editNote, selectNote })(NoteForm);
