@@ -5,4 +5,8 @@
 .note{
     border-bottom: 1px solid #dbdbdb !important;
     list-style: none; 
+    cursor: pointer;
+}
+.sidebar{
+    height: calc(100vh - 4rem);
 }

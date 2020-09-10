@@ -14,10 +14,10 @@ const NotesList = (props) => {
   return (
     <ul className="list-group list-group-flush">
       {notes.map((item, index) => (
-        <li className="list-group-item list-group-item-action" key={index} onClick={() => handleSelectNote({ ...item, id: index })} onKeyDown={() => handleSelectNote({ ...item, id: index })}>
+        <li className="list-group-item list-group-item-action note" key={index} onClick={() => handleSelectNote({ ...item, id: index })} onKeyDown={() => handleSelectNote({ ...item, id: index })}>
           <button
             type="button"
-            className="close"
+            className={`close ${index === props.selectedNote ? 'd-none' : ''}`}
             aria-label="Close"
             onClick={(e) => {
               e.stopPropagation();
@@ -36,11 +36,13 @@ const NotesList = (props) => {
 NotesList.propTypes = {
   notes: PropTypes.arrayOf(PropTypes.object).isRequired,
   selectNote: PropTypes.func.isRequired,
+  selectedNote: PropTypes.number.isRequired,
   removeNote: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   notes: state.notes,
+  selectedNote: state.selectedNote,
 });
 
 export default connect(mapStateToProps, { selectNote, removeNote })(NotesList);
