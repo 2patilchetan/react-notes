@@ -14,7 +14,7 @@ const NotesList = (props) => {
   return (
     <ul className="list-group list-group-flush">
       {notes.map((item, index) => (
-        <li className="list-group-item list-group-item-action note" key={index} onClick={() => handleSelectNote({ ...item, id: index })} onKeyDown={() => handleSelectNote({ ...item, id: index })}>
+        <li className={`list-group-item list-group-item-action note ${index === props.selectedNote ? 'active' : ''}`} key={index} onClick={() => handleSelectNote({ ...item, id: index })} onKeyDown={() => handleSelectNote({ ...item, id: index })}>
           <button
             type="button"
             className={`close ${index === props.selectedNote ? 'd-none' : ''}`}
